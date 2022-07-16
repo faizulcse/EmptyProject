@@ -1,4 +1,4 @@
-node('master') {
+node2('master') {
     stage("Print ENV info") {
 
     }
