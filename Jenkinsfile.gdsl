@@ -1,0 +1,21 @@
+node('master') {
+    stage("Print ENV info") {
+
+    }
+
+    stage("Checkout Repository") {
+
+    }
+
+    stage("Upload Apps to BrowserStack") {
+
+    }
+
+    stage("Execute Automation Tests") {
+
+    }
+
+    stage("Reports Generate") {
+
+    }
+}
