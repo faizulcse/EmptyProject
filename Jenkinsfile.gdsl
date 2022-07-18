@@ -16,6 +16,22 @@ node('master') {
     }
 
     stage("Reports Generate") {
-
+        def reportJson = readFile("${env.WORKSPACE}/cucumber.json")
+        def parsedReportJson = new JsonSlurper().parseText(reportJson)
+        echo parsedReportJson[0].elements
+//        def failedCount = parsedReportJson.total - parsedReportJson.passed
+//        def headerMsg = "Your ${env.SELECT_TEST_TYPE_TAG} TestCafe UI test run is done. Below are the results: \n\n"
+//        def featureFlagsMsg = env.FEATURE_FLAGS ? "Feature Flags: ${env.FEATURE_FLAGS}\n\n" : ""
+//        def passedMsg = " :white_check_mark: Passed: ${parsedReportJson.passed} \n\n"
+//        def failedMsg = " :failed: Failed: ${failedCount} \n\n"
+//        def skippedMsg = " :fast_forward: Skipped: ${parsedReportJson.skipped} \n\n"
+//        def buildMsg = " <${env.BUILD_URL}HTML_20Report/myreports.html|View in Jenkins>"
+//        def message = headerMsg + featureFlagsMsg + passedMsg + failedMsg + skippedMsg + buildMsg
+//
+//        if (failedCount > 0) {
+//            sendSlackMessage(env.SLACK_CHANNEL, message, "danger")
+//        } else {
+//            sendSlackMessage(env.SLACK_CHANNEL, message, "good")
+//        }
     }
 }
