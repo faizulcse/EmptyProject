@@ -22,7 +22,8 @@ node('master') {
         echo reportJson
 //        def parsedReportJson = new JsonSlurper().parseText(reportJson)
 //
-//        def jobsJson = readJSON text: parsedReportJson
+        def jobsJson = readJSON text: reportJson
+        echo jobsJson
 //        echo jobsJson[0]."elements"
 
 
