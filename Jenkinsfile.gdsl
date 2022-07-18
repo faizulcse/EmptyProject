@@ -18,8 +18,8 @@ node('master') {
     stage("Reports Generate") {
         def reportJson = readFile("${env.WORKSPACE}/cucumber.json")
         def jobsJson = readJSON text: reportJson
-        def report = jobsJson.toString()
-        echo report."elements"
+        def report = readJSON text: jobsJson.toString()
+        echo report[0]."elements"
 
 
 //        def failedCount = parsedReportJson.total - parsedReportJson.passed
