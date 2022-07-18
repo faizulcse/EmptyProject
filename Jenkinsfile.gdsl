@@ -1,3 +1,4 @@
+import groovy.json.JsonSlurper
 node('master') {
     stage("Print ENV info") {
 
