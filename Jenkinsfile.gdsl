@@ -1,11 +1,12 @@
 import groovy.json.JsonSlurper
+
 node('master') {
     stage("Print ENV info") {
 
     }
 
     stage("Checkout Repository") {
-
+        checkout scm
     }
 
     stage("Upload Apps to BrowserStack") {
