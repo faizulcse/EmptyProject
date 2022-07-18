@@ -1,0 +1,161 @@
+[
+  {
+    "line": 1,
+    "elements": [
+      {
+        "start_timestamp": "2022-07-18T19:11:21.530Z",
+        "line": 12,
+        "name": "Check login Empty Data",
+        "description": "",
+        "id": "login-functionality-checking;check-login-empty-data;;2",
+        "after": [
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefinitions.Hooks.AfterScenario()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 9088000000,
+              "status": "passed"
+            },
+            "line": 6,
+            "name": "user Enter username \"\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"\"",
+                  "offset": 20
+                }
+              ],
+              "location": "stepDefinitions.LoginPage.LoginPage_Steps.userEnterUsername(java.lang.String)"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 4052000000,
+              "status": "passed"
+            },
+            "line": 7,
+            "name": "user Enter password \"\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"\"",
+                  "offset": 20
+                }
+              ],
+              "location": "stepDefinitions.LoginPage.LoginPage_Steps.userEnterPassword(java.lang.String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 7056000000,
+              "status": "passed"
+            },
+            "line": 8,
+            "name": "click on login button",
+            "match": {
+              "location": "stepDefinitions.LoginPage.LoginPage_Steps.clickOnLoginButton()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@Login"
+          }
+        ]
+      },
+      {
+        "start_timestamp": "2022-07-18T19:11:21.530Z",
+        "line": 23,
+        "name": "Check empty username & valid password",
+        "description": "",
+        "id": "login-functionality-checking;check-empty-username-&-valid-password;;2",
+        "after": [
+          {
+            "result": {
+              "status": "passed"
+            },
+            "match": {
+              "location": "stepDefinitions.Hooks.AfterScenario()"
+            }
+          }
+        ],
+        "type": "scenario",
+        "keyword": "Scenario Outline",
+        "steps": [
+          {
+            "result": {
+              "duration": 8932000000,
+              "status": "passed"
+            },
+            "line": 17,
+            "name": "user Enter username \"\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"\"",
+                  "offset": 20
+                }
+              ],
+              "location": "stepDefinitions.LoginPage.LoginPage_Steps.userEnterUsername(java.lang.String)"
+            },
+            "keyword": "Given "
+          },
+          {
+            "result": {
+              "duration": 4068000000,
+              "status": "passed"
+            },
+            "line": 18,
+            "name": "user Enter password \"SPOLAR@2022\"",
+            "match": {
+              "arguments": [
+                {
+                  "val": "\"SPOLAR@2022\"",
+                  "offset": 20
+                }
+              ],
+              "location": "stepDefinitions.LoginPage.LoginPage_Steps.userEnterPassword(java.lang.String)"
+            },
+            "keyword": "And "
+          },
+          {
+            "result": {
+              "duration": 7071000000,
+              "status": "passed"
+            },
+            "line": 19,
+            "name": "click on login button",
+            "match": {
+              "location": "stepDefinitions.LoginPage.LoginPage_Steps.clickOnLoginButton()"
+            },
+            "keyword": "Then "
+          }
+        ],
+        "tags": [
+          {
+            "name": "@Login"
+          }
+        ]
+      }
+    ],
+    "name": "Login Functionality Checking",
+    "description": "",
+    "id": "login-functionality-checking",
+    "keyword": "Feature",
+    "uri": "file:src/test/java/features/LoginPage.feature",
+    "tags": []
+  }
+]
