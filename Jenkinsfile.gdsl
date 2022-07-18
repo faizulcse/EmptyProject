@@ -19,10 +19,11 @@ node('master') {
 
     stage("Reports Generate") {
         def reportJson = readFile("${env.WORKSPACE}/cucumber.json")
-        def parsedReportJson = new JsonSlurper().parseText(reportJson)
-
-        def jobsJson = readJSON text: parsedReportJson
-        echo jobsJson[0]."elements"
+        echo reportJson
+//        def parsedReportJson = new JsonSlurper().parseText(reportJson)
+//
+//        def jobsJson = readJSON text: parsedReportJson
+//        echo jobsJson[0]."elements"
 
 
 //        def failedCount = parsedReportJson.total - parsedReportJson.passed
