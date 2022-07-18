@@ -19,11 +19,11 @@ node('master') {
 
     stage("Reports Generate") {
         def reportJson = readFile("${env.WORKSPACE}/cucumber.json")
-        def parsedReportJson = new JsonSlurper().parseText(reportJson)
+//        def parsedReportJson = new JsonSlurper().parseText(reportJson)
 
-        def jobsJson = readJSON text: parsedReportJson
+        def jobsJson = readJSON text: reportJson
         echo jobsJson[0]."elements"."after"
-      
+
 
 //        def failedCount = parsedReportJson.total - parsedReportJson.passed
 //        def headerMsg = "Your ${env.SELECT_TEST_TYPE_TAG} TestCafe UI test run is done. Below are the results: \n\n"
