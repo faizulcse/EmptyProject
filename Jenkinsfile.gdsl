@@ -22,7 +22,7 @@ node('master') {
 //        def parsedReportJson = new JsonSlurper().parseText(reportJson)
 
         def jobsJson = readJSON text: reportJson
-        echo jobsJson[0]."elements"."after"
+        echo jobsJson[0]
 
 
 //        def failedCount = parsedReportJson.total - parsedReportJson.passed
