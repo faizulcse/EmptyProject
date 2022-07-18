@@ -1,5 +1,3 @@
-import groovy.json.JsonSlurper
-
 node('master') {
     stage("Print ENV info") {
 
@@ -23,7 +21,7 @@ node('master') {
 //        def parsedReportJson = new JsonSlurper().parseText(reportJson)
 //
         def jobsJson = readJSON text: reportJson
-        echo jobsJson
+        echo jobsJson.toString()
 //        echo jobsJson[0]."elements"
 
 
