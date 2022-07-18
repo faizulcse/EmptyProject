@@ -19,7 +19,7 @@ node('master') {
         def reportJson = readFile("${env.WORKSPACE}/cucumber.json")
         def jobsJson = readJSON text: reportJson
         def report = jobsJson.toString()
-        echo report[0]."elements"
+        echo report."elements"
 
 
 //        def failedCount = parsedReportJson.total - parsedReportJson.passed
