@@ -22,20 +22,17 @@ node('master') {
             }
         }
 
-        echo "Total: " + totalCount
-        echo "Passed: " + (totalCount - failedCount)
-        echo "Failed: " + failedCount
         def headerMsg = "Automation test run is done. Below are the results:\n"
         def passedMsg = "Passed: ${totalCount}\n"
         def failedMsg = "Failed: ${failedCount}\n"
         def buildNumber = "Latest status of build #${BUILD_NUMBER}\n"
         def webhookUrl = "https://brainstationo365.webhook.office.com/webhookb2/abdae2c4-2c4d-4f20-877f-e09aac09d920@a1e21495-2087-4312-a718-7f84ad109439/IncomingWebhook/719a7f12dbba41a09fe3e37262ada354/6dc3c943-15d6-4bbf-a0d6-085ea568d15a"
-        def message = buildNumber + headerMsg + passedMsg + failedMsg
+        def message = headerMsg + passedMsg + failedMsg
 
         if (failedCount > 0) {
-            office365ConnectorSend color: "#ff0000", message: message, status: "${currentBuild.currentResult}", webhookUrl: webhookUrl
+            office365ConnectorSend color: "#ff0000", message: message, status: "Build ${currentBuild.currentResult}", webhookUrl: webhookUrl
         } else {
-            office365ConnectorSend color: "#00FF00", message: message, status: "${currentBuild.currentResult}", webhookUrl: webhookUrl
+            office365ConnectorSend color: "#00FF00", message: message, status: "Build ${currentBuild.currentResult}", webhookUrl: webhookUrl
         }
 
 //        def failedCount = parsedReportJson.total - parsedReportJson.passed
