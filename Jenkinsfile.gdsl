@@ -21,8 +21,10 @@ node('master') {
         def kk = jobsJson[0]."elements"
         def tc = jobsJson[0]."elements".size()
         echo tc.toString()
+        def pass = 0
         for (i in 0..<tc) {
             echo kk[i]."after".toString()
+            echo kk[i]."after"[0]."result"."status".toString()
         }
 //        echo kk[0]."after".toString()
 //        def mm = kk[0]."after".size()
