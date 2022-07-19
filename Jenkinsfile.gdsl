@@ -8,7 +8,7 @@ node('master') {
     }
 
     stage("Send Teams notification with results") {
-        def reports = readJSON text: readFile("${env.WORKSPACE}/cucufmber.json")
+        def reports = readJSON text: readFile("${env.WORKSPACE}/cucumber.json")
         def totalCount = 0
         def failedCount = 0
         for (i in 0..<reports.size()) {
