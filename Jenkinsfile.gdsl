@@ -21,7 +21,9 @@ node('master') {
                 }
             }
         }
-
+        if (failedCount > 0)
+            currentBuild.result = "UNSTABLE"
+        
         def headerMsg = "Automation test run is done. Below are the results:\n\n"
         def passedMsg = "Passed: ${totalCount}\n\n"
         def failedMsg = "Failed: ${failedCount}\n\n"
