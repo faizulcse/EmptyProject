@@ -85,7 +85,7 @@
         "after": [
           {
             "result": {
-              "status": "passed"
+              "status": "failed"
             },
             "match": {
               "location": "stepDefinitions.Hooks.AfterScenario()"

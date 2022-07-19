@@ -16,25 +16,19 @@ node('master') {
     }
 
     stage("Reports Generate") {
-        def reportJson = readFile("${env.WORKSPACE}/cucumber.json")
-        def jobsJson = readJSON text: reportJson
-        def kk = jobsJson[0]."elements"
-        def tc = jobsJson[0]."elements".size()
-        def pass = 0;
-        def fail = 0;
-        for (i in 0..<tc) {
-            def status = kk[i]."after"[0]."result"."status".toString()
-            if (status.toString() == "passed")
-                pass++
+        def jobsJson = readJSON text: readFile("${env.WORKSPACE}/cucumber.json")
+        def testCases = jobsJson[0]."elements"
+        def totalTC = jobsJson[0]."elements".size()
 
-            if (status.toString() == "failed")
-                fail++
+        def failed = 0
+        for (i in 0..<totalTC) {
+            def status = testCases[i]."after"[0]."result"."status".toString()
+            if (status == "failed")
+                failed++
         }
 
-        def skip = tc - (pass + fail)
-        echo "Passed: " + pass.toString()
-        echo "Failed: " + fail.toString()
-        echo "Skipped: " + skip.toString()
+        echo "Passed: " + totalTC - failed
+        echo "Failed: " + failed
 
 //        echo kk[0]."after".toString()
 //        def mm = kk[0]."after".size()
