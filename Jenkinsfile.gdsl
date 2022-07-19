@@ -20,12 +20,22 @@ node('master') {
         def jobsJson = readJSON text: reportJson
         def kk = jobsJson[0]."elements"
         def tc = jobsJson[0]."elements".size()
-        echo tc.toString()
-        def pass = 0
+        def pass = 0;
+        def fail = 0;
         for (i in 0..<tc) {
-            echo kk[i]."after".toString()
-            echo kk[i]."after"[0]."result"."status".toString()
+            def status = kk[i]."after"[0]."result"."status".toString()
+            if (status.toString() == "passed")
+                pass++
+
+            if (status.toString() == "failed")
+                fail++
         }
+
+        def skip = tc - (pass + fail)
+        echo "Passed: " + pass.toString()
+        echo "Failed: " + fail.toString()
+        echo "Skipped: " + skip.toString()
+
 //        echo kk[0]."after".toString()
 //        def mm = kk[0]."after".size()
 //        echo mm.toString()
