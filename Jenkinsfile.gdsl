@@ -20,8 +20,8 @@ node('master') {
         def jobsJson = readJSON text: reportJson
         def kk = jobsJson[0]."elements"
         echo kk[0]."after".toString()
-        echo kk[0]."after".size.toString()
-
+        def mm = kk[0]."after".size()
+        echo mm.toString()
 
 //        def failedCount = parsedReportJson.total - parsedReportJson.passed
 //        def headerMsg = "Your ${env.SELECT_TEST_TYPE_TAG} TestCafe UI test run is done. Below are the results: \n\n"
