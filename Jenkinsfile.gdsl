@@ -29,7 +29,8 @@ node('master') {
         def passedMsg = "Passed: ${totalCount} \n\n"
         def failedMsg = "Failed: ${failedCount} \n\n"
         def webhookUrl = "https://brainstationo365.webhook.office.com/webhookb2/abdae2c4-2c4d-4f20-877f-e09aac09d920@a1e21495-2087-4312-a718-7f84ad109439/IncomingWebhook/719a7f12dbba41a09fe3e37262ada354/6dc3c943-15d6-4bbf-a0d6-085ea568d15a"
-        def message = headerMsg passedMsg + failedMsg
+        def message = headerMsg + passedMsg + failedMsg
+        echo message
 
         if (failedCount > 0) {
             office365ConnectorSend color: "#FFFFFF", message: message, status: "success", webhookUrl: webhookUrl
