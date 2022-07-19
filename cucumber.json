@@ -339,7 +339,7 @@
         "after": [
           {
             "result": {
-              "status": "passed"
+              "status": "failed"
             },
             "match": {
               "location": "com.sharebus.step_defs.Hooks.tearDown(io.cucumber.java.Scenario)"
