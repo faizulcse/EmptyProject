@@ -32,10 +32,10 @@ node('master') {
             }
         }
 
-
-        echo "Total:" + totalTC
-        echo "Passed: " + (totalTC - failCount)
-        echo "Failed: " + failCount
+//
+//        echo "Total:" + totalTC
+//        echo "Passed: " + (totalTC - failCount)
+//        echo "Failed: " + failCount
 
 //        echo kk[0]."after".toString()
 //        def mm = kk[0]."after".size()
