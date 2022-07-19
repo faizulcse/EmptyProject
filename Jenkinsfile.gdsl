@@ -22,11 +22,11 @@ node('master') {
         def tc = jobsJson[0]."elements".size()
         echo tc.toString()
         for (i in 0..<tc) {
-            echo "faizul_" + i
+            echo kk[i]."after".toString()
         }
-        echo kk[0]."after".toString()
-        def mm = kk[0]."after".size()
-        echo mm.toString()
+//        echo kk[0]."after".toString()
+//        def mm = kk[0]."after".size()
+//        echo mm.toString()
 
 //        def failedCount = parsedReportJson.total - parsedReportJson.passed
 //        def headerMsg = "Your ${env.SELECT_TEST_TYPE_TAG} TestCafe UI test run is done. Below are the results: \n\n"
