@@ -450,32 +450,6 @@
     "line": 2,
     "elements": [
       {
-        "line": 4,
-        "name": "",
-        "description": "",
-        "type": "background",
-        "keyword": "Background",
-        "steps": [
-          {
-            "result": {
-              "status": "passed"
-            },
-            "line": 5,
-            "name": "User is on the Sharebus \"SignUp\" page",
-            "match": {
-              "arguments": [
-                {
-                  "val": "\"SignUp\"",
-                  "offset": 24
-                }
-              ],
-              "location": "com.sharebus.step_defs.SignUpSteps.userIsOnTheSharebusSignUpPage(java.lang.String)"
-            },
-            "keyword": "Given "
-          }
-        ]
-      },
-      {
         "start_timestamp": "2022-07-19T06:14:27.429Z",
         "before": [
           {
