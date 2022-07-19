@@ -22,12 +22,13 @@ node('master') {
 
         for (i in 0..<jobsJson.size()) {
             def testCases = jobsJson[i]."elements"
-            for (j in 0..<testCases.size()) {
-                totalTC++
-                def status = testCases[j]."after"[0]."result"."status".toString()
-                if (status == "failed")
-                    failCount++
-            }
+            echo testCases.toString()
+//            for (j in 0..<testCases.size()) {
+//                totalTC++
+//                def status = testCases[j]."after"[0]."result"."status".toString()
+//                if (status == "failed")
+//                    failCount++
+//            }
         }
 
 //
