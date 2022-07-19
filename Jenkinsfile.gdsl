@@ -18,17 +18,18 @@ node('master') {
     stage("Reports Generate") {
         def jobsJson = readJSON text: readFile("${env.WORKSPACE}/cucumber.json")
         def testCases = jobsJson[0]."elements"
-        def totalTC = jobsJson[0]."elements".size()
+        def totalTC = testCases.size()
 
-        def failed = 0
+        def failCount = 0
         for (i in 0..<totalTC) {
             def status = testCases[i]."after"[0]."result"."status".toString()
             if (status == "failed")
-                failed++
+                failCount++
         }
 
-        echo "Passed: " + totalTC - failed
-        echo "Failed: " + failed
+        printfln "Total:" + totalTC
+        echo "Passed: " + totalTC - failCount
+        echo "Failed: " + failCount
 
 //        echo kk[0]."after".toString()
 //        def mm = kk[0]."after".size()
