@@ -22,8 +22,8 @@ node('master') {
 
         for (i in 0..<jobsJson.size()) {
             def testCases = jobsJson[i]."elements"
-            echo testCases.size.toString()
-            
+            echo testCases.size().toString()
+
             for (j in 0..<testCases.size()) {
                 totalTC++
                 echo "===> " + testCases[j]."after".toString()
