@@ -17,20 +17,17 @@ node('master') {
 
     stage("Reports Generate") {
         def jobsJson = readJSON text: readFile("${env.WORKSPACE}/cucumber.json")
-        def totalFeature = jobsJson.size()
-        echo totalFeature.toString()
         def totalTC = 0
         def failCount = 0
 
-        for (i in 0..<totalFeature) {
+        for (i in 0..<jobsJson.size()) {
             def testCases = jobsJson[i]."elements"
-            echo testCases.toString()
-//            for (j in 0..<testCases.size()) {
-//                totalTC++
-//                def status = testCases[j]."after"[0]."result"."status".toString()
-//                if (status == "failed")
-//                    failCount++
-//            }
+            for (j in 0..<testCases.size()) {
+                totalTC++
+                def status = testCases[j]."after"[0]."result"."status".toString()
+                if (status == "failed")
+                    failCount++
+            }
         }
 
 //
