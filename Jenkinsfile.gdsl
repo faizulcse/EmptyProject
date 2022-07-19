@@ -22,6 +22,7 @@ node('master') {
             }
         }
 
+        def passedCount = totalCount - failedCount
         def headerMsg = "Automation test run is done. Below are the results:\n\n"
         def passedMsg = "Passed: ${totalCount}\n\n"
         def failedMsg = "Failed: ${failedCount}\n\n"
@@ -35,8 +36,9 @@ node('master') {
         } else {
             office365ConnectorSend color: "#00FF00", message: message, status: "Build SUCCESS", webhookUrl: webhookUrl,
                     factDefinitions: [
-                            [name: "Commit Message", template: "===========>"],
-                            [name: "Pipeline Duration", template: "============>"]
+                            [name: "Passed", template: passedCount],
+                            [name: "Failed", template: failedCount],
+                            [name: "Total", template: failedCount]
                     ]
         }
 
