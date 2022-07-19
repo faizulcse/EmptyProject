@@ -17,6 +17,8 @@ node('master') {
 
     stage("Reports Generate") {
         def jobsJson = readJSON text: readFile("${env.WORKSPACE}/cucumber.json")
+        echo jobsJson.size().toString()
+        
         def testCases = jobsJson[0]."elements"
         def totalTC = testCases.size()
 
