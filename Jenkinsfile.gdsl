@@ -22,8 +22,8 @@ node('master') {
         def totalTC = 0
         def failCount = 0
 
-        for (i in 0..<totalFeature.size()) {
-            def testCases = totalFeature[i]."elements"
+        for (i in 0..<totalFeature) {
+            def testCases = jobsJson[i]."elements"
             echo testCases.toString()
 //            for (j in 0..<testCases.size()) {
 //                totalTC++
