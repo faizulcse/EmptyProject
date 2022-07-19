@@ -31,7 +31,7 @@ node('master') {
         def message = buildNumber + headerMsg + passedMsg + failedMsg + totalMsg
 
         if (failedCount > 0) {
-            office365ConnectorSend color: "#ff0000", message: message, status: "Build UNSTABLE", webhookUrl: webhookUrl
+            office365ConnectorSend color: "#ff0000", remarks: "Started by user admin", message: message, status: "Build UNSTABLE", webhookUrl: webhookUrl
         } else {
             office365ConnectorSend color: "#00FF00", message: message, status: "Build SUCCESS", webhookUrl: webhookUrl
         }
