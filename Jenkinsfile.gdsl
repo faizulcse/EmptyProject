@@ -25,7 +25,7 @@ node('master') {
 
             for (j in 0..<testCases.size()) {
                 totalTC++
-                echo "===> " + testCases[j]."after".toString()
+                echo "===> " + testCases[j]."after"[0].toString()
 //                def status = testCases[j]."after"[0]."result"."status".toString()
 //                if (status == "failed")
 //                    failCount++
