@@ -39,6 +39,7 @@ node('master') {
                     factDefinitions: [
                             [name: "Passed:", template: "${passedCount}"],
                             [name: "Failed:", template: "${failedCount}"],
+                            [name: "---------", template: "--------------"],
                             [name: "Total run:", template: "${totalCount}"],
                     ],
                     status: "Build SUCCESS",
