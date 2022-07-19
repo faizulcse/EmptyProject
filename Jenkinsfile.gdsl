@@ -34,12 +34,15 @@ node('master') {
         if (failedCount > 0) {
             office365ConnectorSend color: "#ff0000", remarks: "Started by user admin", message: message, status: "Build UNSTABLE", webhookUrl: webhookUrl
         } else {
-            office365ConnectorSend color: "#00FF00", message: message, status: "Build SUCCESS", webhookUrl: webhookUrl,
+            office365ConnectorSend color: "#00FF00",
                     factDefinitions: [
                             [name: "Passed", template: passedCount],
                             [name: "Failed", template: failedCount],
                             [name: "Total", template: failedCount]
-                    ]
+                    ],
+                    message: "My custom message",
+                    status: "Build SUCCESS",
+                    webhookUrl: webhookUrl
         }
 
 //        def failedCount = parsedReportJson.total - parsedReportJson.passed
