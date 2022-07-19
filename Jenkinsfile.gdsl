@@ -27,7 +27,7 @@ node('master') {
                 failCount++
         }
 
-        printfln "Total:" + totalTC
+        echo "Total:" + totalTC
         echo "Passed: " + totalTC - failCount
         echo "Failed: " + failCount
 
