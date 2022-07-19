@@ -35,13 +35,13 @@ node('master') {
             office365ConnectorSend color: "#ff0000", message: message, status: "Build UNSTABLE", webhookUrl: webhookUrl
         } else {
             office365ConnectorSend color: "#00FF00",
-                    message: "${buildNumber}",
+                    message: "Latest status of build #${BUILD_NUMBER}\n\n",
+                    status: "Build ${currentBuild.currentResult}",
                     factDefinitions: [
                             [name: "Failed:", template: "${failedCount}"],
                             [name: "Passed:", template: "${passedCount}"],
                             [name: "Total run:", template: "${totalCount}"],
                     ],
-                    status: "Build SUCCESS",
                     webhookUrl: webhookUrl
         }
 
