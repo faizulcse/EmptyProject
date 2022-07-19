@@ -36,9 +36,9 @@ node('master') {
         } else {
             office365ConnectorSend color: "#00FF00",
                     factDefinitions: [
-                            [name: "Passed", template: passedCount],
-                            [name: "Failed", template: failedCount],
-                            [name: "Total", template: failedCount]
+                            [name: "Passed", template: "${passedCount}"],
+                            [name: "Failed", template: "${failedCount}"],
+                            [name: "Total", template: "${totalCount}"]
                     ],
                     message: "My custom message",
                     status: "Build SUCCESS",
