@@ -28,7 +28,7 @@ node('master') {
         }
 
         echo "Total:" + totalTC
-        echo "Passed: " + totalTC - failCount
+        echo "Passed: " + (totalTC - failCount)
         echo "Failed: " + failCount
 
 //        echo kk[0]."after".toString()
