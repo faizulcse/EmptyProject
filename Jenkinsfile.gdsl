@@ -21,7 +21,9 @@ node('master') {
         def kk = jobsJson[0]."elements"
         def tc = jobsJson[0]."elements".size()
         echo tc.toString()
-        
+        for (i in 0..<tc) {
+            echo "faizul_" + i
+        }
         echo kk[0]."after".toString()
         def mm = kk[0]."after".size()
         echo mm.toString()
