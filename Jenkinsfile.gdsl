@@ -35,8 +35,8 @@ node('master') {
         } else {
             office365ConnectorSend color: "#00FF00", message: message, status: "Build SUCCESS", webhookUrl: webhookUrl,
                     factDefinitions: [
-                            [name: "Commit Message", template: "${commit_message}"],
-                            [name: "Pipeline Duration", template: "${currentBuild.durationString.minus(' and counting')}"]
+                            [name: "Commit Message", template: "===========>"],
+                            [name: "Pipeline Duration", template: "============>"]
                     ]
         }
 
