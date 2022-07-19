@@ -22,21 +22,19 @@ node('master') {
 
         for (i in 0..<jobsJson.size()) {
             def testCases = jobsJson[i]."elements"
-            echo testCases.size().toString()
-
             for (j in 0..<testCases.size()) {
-                totalTC++
-                echo "===> " + testCases[j]."after".toString()
-//                def status = testCases[j]."after"[0]."result"."status".toString()
-//                if (status == "failed")
-//                    failCount++
+                if (testCases[j]."after" != null) {
+                    totalTC++
+                    if (testCases[j]."after"[0]."result"."status" == "failed")
+                        failCount++
+                }
             }
         }
 
 //
-//        echo "Total:" + totalTC
-//        echo "Passed: " + (totalTC - failCount)
-//        echo "Failed: " + failCount
+        echo "Total:" + totalTC
+        echo "Passed: " + (totalTC - failCount)
+        echo "Failed: " + failCount
 
 //        echo kk[0]."after".toString()
 //        def mm = kk[0]."after".size()
