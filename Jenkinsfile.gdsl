@@ -22,16 +22,16 @@ node('master') {
         def totalTC = 0
         def failCount = 0
 
-//        for (i in 0..<jobsJson.size()) {
-//            def testCases = totalFeature[i]."elements"
-//            echo testCases.toString()
-////            for (j in 0..<testCases.size()) {
-////                totalTC++
-////                def status = testCases[j]."after"[0]."result"."status".toString()
-////                if (status == "failed")
-////                    failCount++
-////            }
-//        }
+        for (i in 0..<totalFeature.size()) {
+            def testCases = totalFeature[i]."elements"
+            echo testCases.size().toString()
+//            for (j in 0..<testCases.size()) {
+//                totalTC++
+//                def status = testCases[j]."after"[0]."result"."status".toString()
+//                if (status == "failed")
+//                    failCount++
+//            }
+        }
 
 //
 //        echo "Total:" + totalTC
