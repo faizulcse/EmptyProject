@@ -18,6 +18,7 @@ node('master') {
     stage("Reports Generate") {
         def jobsJson = readJSON text: readFile("${env.WORKSPACE}/cucumber.json")
         def totalFeature = jobsJson.size()
+        echo totalFeature.toString()
         def totalTC = 0
         def failCount = 0
 
