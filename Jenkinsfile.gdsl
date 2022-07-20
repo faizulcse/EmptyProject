@@ -1,4 +1,9 @@
 node('master') {
+    def reportDir = "${env.WORKSPACE}/cucumber.json"
+    def webhookUrl = "https://brainstationo365.webhook.office.com/webhookb2/abdae2c4-2c4d-4f20-877f-e09aac09d920@a1e21495-2087-4312-a718-7f84ad109439/IncomingWebhook/719a7f12dbba41a09fe3e37262ada354/6dc3c943-15d6-4bbf-a0d6-085ea568d15a"
+    def totalCount = 0
+    def failedCount = 0
+
     stage("Checkout Repository") {
         checkout scm
     }
@@ -7,10 +12,8 @@ node('master') {
 
     }
 
-    stage("Send Teams notification with results") {
-        def reports = readJSON text: readFile("${env.WORKSPACE}/cucumber.json")
-        def totalCount = 0
-        def failedCount = 0
+    stage("Generate test results") {
+        def reports = readJSON text: readFile(reportDir)
         for (i in 0..<reports.size()) {
             def testCases = reports[i]."elements"
             for (j in 0..<testCases.size()) {
@@ -21,43 +24,43 @@ node('master') {
                 }
             }
         }
+        passedCount = totalCount - failedCount
+    }
 
-        def passedCount = totalCount - failedCount
-        def headerMsg = "Automation test run is done. Below are the results:\n\n"
-        def passedMsg = "Passed: ${totalCount}\n\n"
-        def failedMsg = "Failed: ${failedCount}\n\n"
-        def totalMsg = "Total test run: ${totalCount}\n\n"
-        def buildNumber = "Latest status of build #${BUILD_NUMBER}\n\n"
-        def webhookUrl = "https://brainstationo365.webhook.office.com/webhookb2/abdae2c4-2c4d-4f20-877f-e09aac09d920@a1e21495-2087-4312-a718-7f84ad109439/IncomingWebhook/719a7f12dbba41a09fe3e37262ada354/6dc3c943-15d6-4bbf-a0d6-085ea568d15a"
-        def message = buildNumber + headerMsg + passedMsg + failedMsg + totalMsg
+    stage("Send Teams notification") {
+        office365ConnectorSend(
+                color: failedCount == 0 ? "#00FF00" : "#ff0000",
+                message: "Latest status of build #${BUILD_NUMBER}\n\n",
+                status: "Build ${currentBuild.currentResult}",
+                factDefinitions: [
+                        [name: "Failed:", template: "${failedCount}"],
+                        [name: "Passed:", template: "${passedCount}"],
+                        [name: "Total run:", template: "${totalCount}"],
+                ],
+                webhookUrl: webhookUrl
+        )
+    }
 
-        if (failedCount > 0) {
-            office365ConnectorSend color: "#ff0000", message: message, status: "Build UNSTABLE", webhookUrl: webhookUrl
-        } else {
-            office365ConnectorSend color: "#00FF00",
-                    message: "Latest status of build #${BUILD_NUMBER}\n\n",
-                    status: "Build ${currentBuild.currentResult}",
-                    factDefinitions: [
-                            [name: "Failed:", template: "${failedCount}"],
-                            [name: "Passed:", template: "${passedCount}"],
-                            [name: "Total run:", template: "${totalCount}"],
-                    ],
-                    webhookUrl: webhookUrl
-        }
-
-//        def failedCount = parsedReportJson.total - parsedReportJson.passed
-//        def headerMsg = "Your ${env.SELECT_TEST_TYPE_TAG} TestCafe UI test run is done. Below are the results: \n\n"
-//        def featureFlagsMsg = env.FEATURE_FLAGS ? "Feature Flags: ${env.FEATURE_FLAGS}\n\n" : ""
-//        def passedMsg = " :white_check_mark: Passed: ${parsedReportJson.passed} \n\n"
+    stage("Send Slack notification") {
+//        def passedMsg = " :white_check_mark: Passed: ${passedCount} \n\n"
 //        def failedMsg = " :failed: Failed: ${failedCount} \n\n"
-//        def skippedMsg = " :fast_forward: Skipped: ${parsedReportJson.skipped} \n\n"
-//        def buildMsg = " <${env.BUILD_URL}HTML_20Report/myreports.html|View in Jenkins>"
-//        def message = headerMsg + featureFlagsMsg + passedMsg + failedMsg + skippedMsg + buildMsg
+//        def skippedMsg = " :fast_forward: Total: ${totalCount} \n\n"
+//        def status = passedMsg + failedMsg + skippedMsg
 //
-//        if (failedCount > 0) {
-//            sendSlackMessage(env.SLACK_CHANNEL, message, "danger")
-//        } else {
-//            sendSlackMessage(env.SLACK_CHANNEL, message, "good")
-//        }
+//        if (failedCount > 0)
+//            sendSlackMessage(env.SLACK_CHANNEL, status, "danger")
+//        else
+//            sendSlackMessage(env.SLACK_CHANNEL, status, "good")
+    }
+
+    stage("Send GChat notification") {
+//        googlechatnotification(
+//                message: "Latest status of build #${BUILD_NUMBER}\n\n" + "Failed: ${failedCount}\n\n" + "Passed: \n\n" + "Total run: ${totalCount}\n\n" + "Status: Build ${currentBuild.currentResult}",
+//                notifyAborted: true,
+//                notifyFailure: true,
+//                notifySuccess: true,
+//                notifyUnstable: true,
+//                url: "https://chat.googleapis.com/v1/spaces/7D8la4AAAAE/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=a          'HulDviWFMz6R5FW-GwlO4INCW1cZGDDExuWVaEbbr_g%3D"
+//        )
     }
 }
