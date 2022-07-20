@@ -3,6 +3,7 @@ node('master') {
     def webhookUrl = "https://brainstationo365.webhook.office.com/webhookb2/abdae2c4-2c4d-4f20-877f-e09aac09d920@a1e21495-2087-4312-a718-7f84ad109439/IncomingWebhook/719a7f12dbba41a09fe3e37262ada354/6dc3c943-15d6-4bbf-a0d6-085ea568d15a"
     def totalCount = 0
     def failedCount = 0
+    def passedCount = 0
 
     stage("Checkout Repository") {
         checkout scm
