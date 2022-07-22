@@ -1,5 +1,5 @@
 node('master') {
-    def reportDir = "${env.WORKSPACE}/target/cucumber.json"
+    def reportDir = "${env.WORKSPACE}/cucumber.json"
     def webhookUrl = "https://brainstationo365.webhook.office.com/webhookb2/abdae2c4-2c4d-4f20-877f-e09aac09d920@a1e21495-2087-4312-a718-7f84ad109439/IncomingWebhook/719a7f12dbba41a09fe3e37262ada354/6dc3c943-15d6-4bbf-a0d6-085ea568d15a"
     def totalCount = 0
     def failedCount = 0
@@ -55,13 +55,13 @@ node('master') {
     }
 
     stage("Send GChat notification") {
-//        googlechatnotification(
-//                message: "Latest status of build #${BUILD_NUMBER}\n\n" + "Failed: ${failedCount}\n\n" + "Passed: \n\n" + "Total run: ${totalCount}\n\n" + "Status: Build ${currentBuild.currentResult}",
-//                notifyAborted: true,
-//                notifyFailure: true,
-//                notifySuccess: true,
-//                notifyUnstable: true,
-//                url: "https://chat.googleapis.com/v1/spaces/7D8la4AAAAE/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=a          'HulDviWFMz6R5FW-GwlO4INCW1cZGDDExuWVaEbbr_g%3D"
-//        )
+        googlechatnotification(
+                message: "Latest status of build #${BUILD_NUMBER}\n\n" + "Failed: ${failedCount}\n\n" + "Passed: \n\n" + "Total run: ${totalCount}\n\n" + "Status: Build ${currentBuild.currentResult}",
+                notifyAborted: true,
+                notifyFailure: true,
+                notifySuccess: true,
+                notifyUnstable: true,
+                url: "https://chat.googleapis.com/v1/spaces/AAAAX8RklvA/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=87YPloRrYP_QJxuMwp6pxOEJrMyoXYiQQ4I2q5Irg1Q%3D"
+        )
     }
 }
