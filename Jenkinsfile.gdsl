@@ -56,7 +56,7 @@ node('master') {
 
     stage("Send GChat notification") {
         googlechatnotification(
-                message: "Latest status of build #${BUILD_NUMBER}\n\n" + "Failed: ${failedCount}\n\n" + "Passed: \n\n" + "Total run: ${totalCount}\n\n" + "Status: Build ${currentBuild.currentResult}",
+                message: "Latest status of build #${BUILD_NUMBER}\n\n" + "Failed: ${failedCount}\n\n" + "Passed: ${passedCount}\n\n" + "Total run: ${totalCount}\n\n" + "Status: Build ${currentBuild.currentResult}",
                 suppressInfoLoggers: false,
                 url: "https://chat.googleapis.com/v1/spaces/AAAAX8RklvA/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=87YPloRrYP_QJxuMwp6pxOEJrMyoXYiQQ4I2q5Irg1Q%3D"
         )
