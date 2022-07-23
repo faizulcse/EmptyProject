@@ -56,8 +56,6 @@ node('master') {
 
     stage("Send GChat notification") {
         googlechatnotification(message: "This is a <strike>simple</strike> <i>card<i> text message " +
-                "with a <a href=\"https://github.com/mkutz/jenkins-google-chat-notification\">link</a>" +
-                "<br>and a line break, " +
-                "which does not support mention @all users in the Group.", url: "https://chat.googleapis.com/v1/spaces/AAAAX8RklvA/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=87YPloRrYP_QJxuMwp6pxOEJrMyoXYiQQ4I2q5Irg1Q%3D")
+                "<br>and a line break", url: "https://chat.googleapis.com/v1/spaces/AAAAX8RklvA/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=87YPloRrYP_QJxuMwp6pxOEJrMyoXYiQQ4I2q5Irg1Q%3D")
     }
 }
