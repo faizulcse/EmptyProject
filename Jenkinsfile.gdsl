@@ -55,7 +55,9 @@ node('master') {
     }
 
     stage("Send GChat notification") {
-        def temp = "faizul"
-        googlechatnotification(message: TokenMacro.expand(temp, "${totalCount}"), notifySuccess: true, suppressInfoLoggers: false, url: "https://chat.googleapis.com/v1/spaces/AAAAX8RklvA/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=87YPloRrYP_QJxuMwp6pxOEJrMyoXYiQQ4I2q5Irg1Q%3D")
+        String temp = "faizul"
+        String status = TokenMacro.expand(temp, "${totalCount}")
+        println(status)
+        googlechatnotification(message: status, notifySuccess: true, suppressInfoLoggers: false, url: "https://chat.googleapis.com/v1/spaces/AAAAX8RklvA/messages?key=AIzaSyDdI0hCZtE6vySjMm-WEfRq3CPzqKqqsHI&token=87YPloRrYP_QJxuMwp6pxOEJrMyoXYiQQ4I2q5Irg1Q%3D")
     }
 }
